@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1545088884 "/Users/derekprovance/Alan/Resume/resume.tex" "resume.pdf" "resume" 1545088884
-  "/Users/derekprovance/Alan/Resume/resume.tex" 1545088883 8137 3a6c94e248c6c9cf2217aafc22eba43f ""
-  "/dev/null" 1545088862 0 d41d8cd98f00b204e9800998ecf8427e ""
+["pdflatex"] 1545093117 "/Users/derekprovance/Alan/Resume/resume.tex" "resume.pdf" "resume" 1545093117
+  "/Users/derekprovance/Alan/Resume/resume.tex" 1545093116 8147 90d49f53d679e66824aed9d36c8d9f4d ""
+  "/dev/null" 1545093114 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmr10.tfm" 1136768653 1296 45809c5a464d5f32c8f98ba97c1bb47f ""
   "/usr/local/texlive/2018/texmf-dist/tex/generic/babel-english/UKenglish.ldf" 1496785618 2772 43f923fdb8719709f1f3e1f4f671e083 ""
@@ -47,9 +47,9 @@
   "/usr/local/texlive/2018/texmf-dist/web2c/texmf.cnf" 1522066949 33362 cf75436e19743e94a92a6b1b9183c434 ""
   "/usr/local/texlive/2018/texmf-var/web2c/pdftex/pdflatex.fmt" 1543373894 4222480 c4c46bd8958f9f6715d0f1665b01aa3e ""
   "/usr/local/texlive/2018/texmf.cnf" 1523934483 577 0b39adfd7c93507ff20c9c14c2f1a33f ""
-  "resume.aux" 1545088884 8 a94a2480d3289e625eea47cd1b285758 ""
-  "resume.cls" 1526993746 2947 cc74a4163d0c051f4ef6672050606d07 ""
-  "resume.tex" 1545088883 8137 3a6c94e248c6c9cf2217aafc22eba43f ""
+  "resume.aux" 1545093117 8 a94a2480d3289e625eea47cd1b285758 ""
+  "resume.cls" 1545091998 2947 cc74a4163d0c051f4ef6672050606d07 ""
+  "resume.tex" 1545093116 8147 90d49f53d679e66824aed9d36c8d9f4d ""
   (generated)
-  "resume.log"
   "resume.pdf"
+  "resume.log"
