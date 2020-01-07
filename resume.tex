@@ -1,220 +1,304 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Forked from original author:
-% Debarghya Das (http://debarghyadas.com)
-%
-% Original repository:
-% https://github.com/deedydas/Deedy-Resume
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[10pt, letterpaper]{article}
 
-\documentclass[]{resume}
-\usepackage{fancyhdr}
+% ============ PREAMBLE ============
+% Document class and basic layout
+\usepackage[
+    ignoreheadfoot, 
+    top=2 cm, 
+    bottom=2 cm, 
+    left=2 cm, 
+    right=2 cm, 
+    footskip=1.0 cm, 
+]{geometry}
 
-\pagestyle{fancy}
-\fancyhf{}
+% Typography and fonts
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[sfdefault]{roboto}
+\usepackage{fontawesome5}
+\usepackage{amsmath}
 
-\rfoot{Page \thepage \hspace{1pt}}
+% Layout and formatting
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{enumitem}
+\usepackage{changepage}
+\usepackage{needspace}
+\usepackage{totpages}
+\usepackage{ifthen}
+\usepackage{etoolbox}
+
+% Colors and styling
+\usepackage[dvipsnames]{xcolor}
+\definecolor{primaryColor}{RGB}{0, 79, 144}
+
+% Date formatting
+\usepackage{datetime}
+
+% PDF and accessibility
+\usepackage[
+    pdftitle={Derek Provance Resume},
+    pdfauthor={Derek Provance},
+    pdfcreator={LaTeX},
+    pdfsubject={Resume},
+    pdfkeywords={Software Engineer, Software Architect, AWS, Full Stack Developer},
+    pdfdisplaydoctitle=true,
+    pdfusetitle=true,
+    unicode=true,
+    breaklinks=true,
+    colorlinks=true,
+    urlcolor=primaryColor,
+    pdfpagemode=UseOutlines
+]{hyperref}
+\usepackage{bookmark}
+\usepackage[pscoord]{eso-pic}
+
+% Ensure PDF is machine readable
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+% PDF accessibility settings
+\hypersetup{
+    pdfborderstyle={/S/U/W 1},
+    pdftoolbar=true,
+    pdfmenubar=true,
+    bookmarksopen=true
+}
+
+% ============ DOCUMENT STYLING ============
+% Layout settings
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\topskip}{0pt}
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt}
+
+% Custom footer
+\makeatletter
+\let\ps@customFooterStyle\ps@plain
+\patchcmd{\ps@customFooterStyle}{\thepage}{
+    \color{gray}\textit{Derek Provance - Resume - Page \thepage{} of \ref{TotPages}}
+}{}{} 
+\makeatother
+\pagestyle{customFooterStyle}
+
+% Section formatting
+\titleformat{\section}
+    {\needspace{4\baselineskip}\Large\bfseries}
+    {}
+    {0pt}
+    {}
+    [\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{0pt}{0.5cm}{0.3cm}
+
+% Custom environments and commands
+\renewcommand\labelitemi{\textbullet}
+
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} 
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{0.2cm}{0.2cm}
+}{
+    \end{adjustwidth}
+} 
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} 
+
+% Entry commands
+\newcommand{\jobentry}[4]{
+    \begin{onecolentry}
+        \noindent
+        \begin{tabularx}{\textwidth}{@{}X>{\raggedleft\arraybackslash}p{3cm}@{\hspace{0.2cm}}}
+            \begin{tabular}[t]{@{}l@{}}
+                \textbf{#1}\\
+                \textit{#2}
+            \end{tabular} &
+            \begin{tabular}[t]{@{}r@{}}
+                #4\\
+                \textit{#3}
+            \end{tabular}
+        \end{tabularx}
+    \end{onecolentry}
+}
+
+\newcommand{\roleentry}[3]{
+    \begin{onecolentry}
+        \noindent
+        \begin{tabularx}{\textwidth}{@{}X>{\raggedleft\arraybackslash}p{3cm}@{\hspace{0.2cm}}}
+            \begin{tabular}[t]{@{}l@{}}
+                \textbf{#1}
+            \end{tabular} &
+            \begin{tabular}[t]{@{}r@{}}
+                #3\\
+                \textit{#2}
+            \end{tabular}
+        \end{tabularx}
+    \end{onecolentry}
+}
+
+\newcommand{\educationentry}[2]{
+    \begin{onecolentry}
+        \noindent
+        \textbf{#1}\\
+        \textit{#2}
+    \end{onecolentry}
+}
+
+% Utility commands
+\newcommand{\placelastupdatedtext}{
+  \AddToShipoutPicture*{
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Last updated: \monthname\ \the\year}
+    }}}
+  }
+}
+
+\newcommand{\contactSeparator}{\hspace{0.5em}$\bullet$\hspace{0.5em}}
+
+% Improved link accessibility
+\let\hrefWithoutArrow\href
+
+% ============ DOCUMENT CONTENT ============
 \begin{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     LAST UPDATED DATE
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\placelastupdatedtext
+\begin{header}
+    % Name with clear semantic value
+    {\fontsize{24pt}{28pt}\selectfont\textbf{Derek Provance}}
+    \vspace{0.2cm}
 
-% \lastupdated
+    % Contact info (split into two lines for clarity)
+    \normalsize
+    Denver, CO | 913.228.2196 | \hrefWithoutArrow{mailto:me@derek.pro}{me@derek.pro} \\
+    \hrefWithoutArrow{https://derek.pro}{derek.pro} | \hrefWithoutArrow{https://linkedin.com/in/derekprovance}{linkedin.com/in/derekprovance} | \hrefWithoutArrow{https://github.com/derekprovance}{github.com/derekprovance}
+\end{header}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     TITLE NAME
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{0.2cm}
 
-\namesection{Derek}{Provance}{ \urlstyle{same}\url{https://derek.pro} \\
-\href{mailto:derek@provance.me}{derek@provance.me} | 913.730.6207}
+% Professional Summary
+\section{Professional Summary}
+\begin{onecolentry}
+    \textbf{Software Architect} with \textbf{11+ years} building \textbf{enterprise-scale systems} for \textbf{SaaS} and \textbf{healthcare} sectors. Expert in \textbf{cloud-native architectures}, \textbf{AI-assisted development}, and leading \textbf{cross-functional teams} through complex migrations. Proven track record of accelerating delivery by \textbf{40-75\%} while maintaining \textbf{zero-downtime operations}.
+\end{onecolentry}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     COLUMN ONE
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Technical Skills
+\section{Technical Skills}
+\begin{onecolentry}
+\begin{itemize}[leftmargin=0.5cm]
+    \item \textbf{Architecture \& Design:} Serverless Architecture, API Design, Database Design, System Integration, Event-Driven Architecture, Distributed Systems
+    \item \textbf{Cloud \& Infrastructure:} AWS (Lambda, API Gateway, DynamoDB, S3, EC2, ECS, CloudFormation), Docker, Kubernetes, CI/CD Pipelines, Terraform, GitHub Actions
+    \item \textbf{Programming:} TypeScript, JavaScript, Node.js, Java, SQL, Nest.JS, Spring Boot, Temporal.io
+    \item \textbf{Databases \& Data:} DynamoDB, MySQL, PostgreSQL, MongoDB, Redis, Elasticsearch, Database Migration, Data Modeling, ETL Pipelines
+    \item \textbf{Leadership \& Methods:} Technical Leadership, Team Mentoring, Cross-functional Collaboration, Agile/Scrum, GitHub Flow, SDLC, Technical Documentation
+    \item \textbf{AI Development Tools:} Claude.AI, Claude Code, Cursor, AI-Assisted Development, Code Generation, Architecture Planning
+\end{itemize}
+\end{onecolentry}
 
-\begin{minipage}[t]{0.33\textwidth}
+    \section{Professional Experience}
+    
+    \jobentry{Software Architect}{Formstack}{Mar 2025 - Present}{Remote}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     Objective
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \vspace{0.10cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item Delivered enterprise \textbf{HIPAA-compliant} healthcare workflow platform, architecting scalable solution using \textbf{Node.js}/\textbf{TypeScript}, \textbf{Temporal.io}, and \textbf{Redis} with \textbf{AI-assisted development}
+            \item Accelerated enterprise platform delivery by 40\% through 8-person team leadership and cross-functional coordination, completing a workflow solution in 3 months across multiple microservice teams
+            \item Designed workflow architecture with \textbf{SQL schema} and definition system translating visual maps into executable \textbf{Temporal.io} workflows
+            \item Implemented \textbf{Redis}-based transient storage solution, eliminating persistent record storage while maintaining full functionality
+            \item Established daily war rooms and rapid feedback cycles, transforming siloed development into coordinated team execution
+            \item Launched production workflow with 8 design partners and achieved successful beta-to-release transition, implementing critical \textbf{EHR integration} for healthcare data exchange
+        \end{highlights}
+    \end{onecolentry}
+    
+    \vspace{0.3cm}
+    \jobentry{Principal Engineer}{Formstack}{Jan 2022 - Mar 2025}{Remote}
 
-\section{Objective}
-\begin{minipage}[t]{0.90\textwidth}
-To help change the world through technology, a platform with never before seen possibilities to do so. I seek an innovative culture that allows me to explore such technologies and find those applications.
-\end{minipage}
-\sectionsep
+    \vspace{0.10cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item Architected \textbf{zero-downtime migration} of 1.5M records from \textbf{DynamoDB} to \textbf{Aurora DB} using \textbf{dual-write pattern}, improving performance 47\% and reducing errors 70\%
+            \item Accelerated delivery 50\% by migrating from \textbf{DynamoDB} to \textbf{Aurora DB}, eliminating 800 lines of custom join logic and enabling native \textbf{SQL} development while leading 5-engineer team modernization of Workflows platform
+            \item Transformed \textbf{SDLC} with \textbf{GitHub Flow} \textbf{CI/CD} and \textbf{feature flags}, scaling from bi-monthly to daily deployments while reducing incidents 92\%
+            \item Transformed product stability from least to most stable in company portfolio through comprehensive team mentoring on \textbf{SQL} technologies and engineering best practices
+            \item Improved customer retention by eliminating data loss issues and partnering with stakeholders to balance infrastructure costs with dramatic quality improvements
+            \item Reduced \textbf{MTTR} from hours to seconds through automated \textbf{feature flag rollbacks} and enhanced \textbf{observability}, establishing deployment process as company "gold standard"
+        \end{highlights}
+    \end{onecolentry}
+    
+    \vspace{0.3cm}
+    \jobentry{Senior Software Developer}{Formstack}{Jul 2020 - Jan 2022}{Remote}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     SKILLS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \vspace{0.10cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item Engineered custom \textbf{Lambda} solution for critical \textbf{document signing service}, preserving functionality for 1,500+ daily documents and preventing enterprise revenue loss
+            \item Improved system performance by 30-50\% and reduced critical \textbf{database retrieval} from 90+ to 20 seconds through strategic legacy codebase optimization via \textbf{algorithm refinements} and \textbf{TypeScript} conversion
+            \item Implemented \textbf{AWS Step Functions} for \textbf{workflow orchestration}, creating transparent data visualization while maintaining \textbf{HIPAA compliance} for medical documents
+            \item Eliminated deployment outages and increased release frequency by leading 4-person Sign team transition from bi-monthly deployments to \textbf{zero-downtime} releases using \textbf{feature flags}
+            \item Rescued million-dollar client relationship by debugging complex \textbf{SOAP API} integration with \textbf{Epic healthcare system}
+        \end{highlights}
+    \end{onecolentry}
 
-\section{Skills}
-\subsection{Programming}
-Java \textbullet{} Python \\
-Javascript \textbullet{} PHP \\
-SQL \\
-\sectionsep
+    \vspace{0.3cm}
 
-\subsection{Frameworks \& Tools}
-Spring \textbullet{}  ReactJS  \textbullet{}  AngularJS \textbullet{}  Laravel \\
-Phalcon \textbullet{} Bash \textbullet{} Docker \textbullet{} Jenkins \\ 
-Gradle \textbullet{} CircleCI \textbullet{} Git \textbullet{}  React Native \\
-\sectionsep
+    \jobentry{Java Backend Developer}{Adknowledge}{Apr 2016 - Jan 2019}{Kansas City, MO}
 
-\subsection{Technologies}
-AWS \textbullet{} MySQL \textbullet{}  Postgres \\
-Elasticsearch \textbullet{}  Redis \\
-Linux \textbullet{} ESXi
-\sectionsep
+    \vspace{0.10cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item Developed high-volume \textbf{ETL pipeline} for \textbf{push notification service} processing 1-2 million simultaneous notifications, implementing \textbf{caching strategies} to optimize \textbf{MySQL} performance
+            \item Established \textbf{DevOps infrastructure} with \textbf{Docker}, \textbf{Docker-Compose}, and \textbf{CI/CD pipelines} using \textbf{Jenkins}, increasing developer efficiency and deployment reliability
+            \item Created \textbf{API integration services} for external data providers with fault tolerance strategies, rate limit management, and \textbf{Facebook Ads API} integration
+            \item Managed \textbf{AWS infrastructure} including \textbf{EC2} and \textbf{Elastic Beanstalk} deployments, ensuring scalability for high-traffic production systems
+        \end{highlights}
+    \end{onecolentry}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     EDUCATION
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \vspace{0.3cm}
 
-\section{Education}
+    \jobentry{Ruby Software Developer}{Red Nova Labs}{Apr 2015 - Apr 2016}{Kansas City, KS}
 
-\subsection{University of Missouri}
-\descript{BS in Computer Science}
-\location{Grad. May 2014}
-College of Engineering \\
-\sectionsep
+    \vspace{0.10cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item Developed large-scale \textbf{Ruby on Rails} storage management application, implementing \textbf{RESTful APIs} and \textbf{MVC architecture} patterns
+            \item Implemented \textbf{test-driven development} methodologies while creating efficient data models with \textbf{PostgreSQL} and \textbf{ActiveRecord} ORM
+        \end{highlights}
+    \end{onecolentry}
+    
+    \vspace{0.3cm}
 
-\subsection{Notre Dame Regional}
-\descript{High School}
-\location{Grad. May 2009 | Cape Girardeau, MO}
-\sectionsep
+    \jobentry{Java Backend Developer}{Assurant Employee Benefits}{Apr 2014 - Mar 2015}{Kansas City, MO}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     LINKS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \vspace{0.10cm}
+    \begin{onecolentry}
+        \begin{highlights}
+            \item Developed \textbf{enterprise-level Java applications} for employee benefits management using \textbf{Java 8}, \textbf{Spring Boot}, and \textbf{Hibernate ORM}
+            \item Contributed to \textbf{Java migration} project from Java 1.6 to Java 8, improving system performance and enabling modern development practices
+            \item Collaborated effectively within a team of 15 engineers following \textbf{Agile methodologies} to deliver critical business features
+        \end{highlights}
+    \end{onecolentry}
 
-\section{Links}
-Github:// \href{https://github.com/derekprovance}{\bf derekprovance} \\
-LinkedIn://  \href{https://www.linkedin.com/in/derekprovance}{\bf derekprovance} \\
+    \section{Education}
+    \educationentry{University of Missouri}{BS in Computer Science, College of Engineering, 2014}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%     COLUMN TWO
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.66\textwidth}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     EXPERIENCE
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Experience}
-
-\runsubsection{All Hands and Hearts}
-\descript{| Software Engineer (Vol)}
-\location{May 2019 - September 2019 | Remote}
-\begin{tightemize}
-\vspace{\topsep}
-\item Contributed to a Disaster Recovery app using \textbf{React Native} for \textbf{Android} and \textbf{iOS}
-\item Architected and implemented a \textbf{Serverless Infrastructure} in \textbf{AWS} using \textbf{Lambda}, \textbf{API Gateway}, \textbf{DynamoDB}, and \textbf{S3}
-\item Collaborated remotely with an international team of volunteers
-\end{tightemize}
-\sectionsep
-
-\runsubsection{Adknowledge}
-\descript{| Software Engineer}
-\location{Apr 2016 - Jan 2019 | Kansas City, MO}
-\begin{tightemize}
-\item Built and maintained a \textbf{Docker} development environment using \textbf{Docker-Compose} helping increase developer efficiency
-\item Used \textbf{Jenkins, Docker, and Selenium} for automated deployment and monitoring
-\item Assisted in architecting and designing a \textbf{scalable serverless environment} using AWS \textbf{Lambda} and \textbf{Firehose}
-\item Built and architected an automated image tagger in \textbf{Java} that analyzes images using \textbf{Google Vision} and \textbf{Clarifai}
-\item Implemented a \textbf{Java} application that synced with Facebook Ads \textbf{RESTful API} and pulled large campaign datasets for advertisers
-\item Designed a data pipeline using \textbf{SQS} and architected a database structure for each application using \textbf{Postgresql} and \textbf{Redis}
-\end{tightemize}
-\sectionsep
-
-% \runsubsection{Proveric Consulting}
-% \descript{| Ruby Software Developer }
-% \location{November 2015 - Present | Kansas City, MO}
-% \begin{tightemize}
-% \item Architect \textbf{AWS} server environments for clients to fit their needs using technologies like \textbf{Beanstalk, RDS, Route 52 and WAS \& Shield.}
-% \item Build customized sites and RESTFul APIs for clients using \textbf{PHP, Java, and MySQL}.
-% \end{tightemize}
-% \sectionsep
-
-\runsubsection{Red Nova Labs}
-\descript{| Ruby Software Developer }
-\location{April 2015 - November 2015 | Kansas City, KS}
-\begin{tightemize}
-\item Developed, refactored and maintained a large-scale \textbf{Ruby on Rails} project
-\item Led a remote development team ensuring smooth operation and understanding of the product
-\end{tightemize}
-\sectionsep
-
-\runsubsection{Assurant Employee Benefits}
-\descript{| Software Developer I }
-\location{April 2014 - March 2015 | Kansas City, MO}
-\descript{Software Development Intern }
-\location{June 2012 - November 2013 | Kansas City, MO}
-\begin{tightemize}
-\item Developed \textbf{Java} applications on a corporate scale using frameworks such as \textbf{Spring}, \textbf{Hibernate} and \textbf{GWT}
-\item Built an agnostic front-end using \textbf{AngularJS}, \textbf{Bootstrap}, and \textbf{jQuery}
-\end{tightemize}
-\sectionsep
-
-% \runsubsection{Safe Trek Mobile Security, LLC}
-% \descript{| Software Engineer Contractor }
-% \location{April 2014 - August 2014 | Columbia, MO}
-% \begin{tightemize}
-% \item Developed a dashboard to be used in call centers using \textbf{Ruby on Rails}
-% \item Worked with \textbf{Amazon AWS} and Heroku to host the \textbf{Ruby} application
-% \end{tightemize}
-% \sectionsep
-
-% \runsubsection{The Gauntlet Initiative}
-% \descript{| Co-Founder }
-% \location{August 2013 - January 2014 | Columbia, MO}
-% \begin{tightemize}
-% \item Started and lead an engineering team for a new business
-% \item Created custom made prosthetics using selective laser sintering
-% \item Designed image analysis algorithms for automated measurements of the human hand using \textbf{Java}
-% \end{tightemize}
-% \sectionsep
-
-% \runsubsection{3D Printing Club}
-% \descript{| President and Co-Founder}
-% \location{July 2012 - November 2013 | University of Missouri, Columbia}
-% \begin{tightemize}
-% \item Lead first team of seven to achieve growth in the organization
-% \item Developed a full stack custom CMS in \textbf{PHP} and \textbf{MySQL} to manage the organization
-% \end{tightemize}
-% \sectionsep
-
-% \runsubsection{Assurant Employee Benefits}
-% \descript{| Software Development Intern }
-% \location{June 2012 - November 2013 | Kansas City, MO}
-% \begin{tightemize}
-% \item Designed, Coded, Tested, Debugged, and documented various Java programs and iOS applications
-% \item Used Agile development to achieve better communication and quicker development
-% \end{tightemize}
-% \sectionsep
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%     VOLUNTEERING
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Activities \& Volunteering}
-\begin{tabular}{rl}
-Feb 2019 - May 2019 & Team Leader for All Hands and Hearts Smart Response \\
-2012-2014 & Webmaster Committee Leader for St. Patrick's Board \\
-2013 & Habitat for Humanity \\
-\end{tabular}
-\sectionsep
-
-\end{minipage}
-\end{document}  \documentclass[]{article}
+\end{document}
