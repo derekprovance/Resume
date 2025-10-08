@@ -79,7 +79,7 @@
 \makeatletter
 \let\ps@customFooterStyle\ps@plain
 \patchcmd{\ps@customFooterStyle}{\thepage}{
-    \color{gray}\textit{Derek Provance - Resume - Page \thepage{} of \ref{TotPages}}
+    \color{gray}\textit{Derek Provance - Resume - Page \thepage\ of \ref*{TotPages}}
 }{}{} 
 \makeatother
 \pagestyle{customFooterStyle}
@@ -206,8 +206,8 @@
 \begin{onecolentry}
 \begin{itemize}[leftmargin=0.5cm]
     \item \textbf{Architecture \& Design:} Serverless Architecture, API Design, Database Design, System Integration, Event-Driven Architecture, Distributed Systems
-    \item \textbf{Cloud \& Infrastructure:} AWS (Lambda, API Gateway, DynamoDB, S3, EC2, ECS, CloudFormation), Docker, Kubernetes, CI/CD Pipelines, Terraform, GitHub Actions
-    \item \textbf{Programming:} TypeScript, JavaScript, Node.js, Java, SQL, Nest.JS, Spring Boot, Temporal.io
+    \item \textbf{Cloud \& Infrastructure:} AWS (Lambda, API Gateway, DynamoDB, S3, EC2, ECS, CloudFormation), Docker, CI/CD Pipelines, Terraform, GitHub Actions
+    \item \textbf{Programming:} TypeScript, JavaScript, Node.js, Nest.JS, Temporal.io, Java, SQL, Spring Boot
     \item \textbf{Databases \& Data:} MySQL, PostgreSQL, NoSql, MongoDB, Redis, Elasticsearch, Database Migration, Data Modeling, ETL Pipelines
     \item \textbf{Leadership \& Methods:} Technical Leadership, Team Mentoring, Cross-functional Collaboration, Agile/Scrum, GitHub Flow, SDLC, Technical Documentation
     \item \textbf{AI Development Tools:} Claude.AI, Claude Code, Cursor, AI-Assisted Development, Code Generation, Architecture Planning
@@ -216,12 +216,12 @@
 
     \section{Experience}
     
-    \jobentry{Software Architect}{Intellistack}{Mar 2025 - Present}{Remote}
+    \jobentry{Software Architect}{Intellistack}{Mar 2025 - Aug 2025}{Remote}
 
     \vspace{0.10cm}
     \begin{onecolentry}
         \begin{highlights}
-            \item Delivered enterprise \textbf{HIPAA-compliant} healthcare workflow platform, architecting scalable solution using \textbf{Node.js}/\textbf{TypeScript}, \textbf{Temporal.io}, and \textbf{Redis} with \textbf{AI-assisted development}
+            \item Delivered enterprise \textbf{HIPAA-compliant} workflow platform, architecting scalable solution using \textbf{Node.js}/\textbf{TypeScript}, \textbf{Temporal.io}, and \textbf{Redis} with \textbf{AI-assisted development}
             \item Accelerated enterprise platform delivery by 40\% through 8-person team leadership and cross-functional coordination, completing a workflow solution in 3 months across multiple microservice teams
             \item Designed workflow architecture with \textbf{SQL schema} and definition system translating visual maps into executable \textbf{Temporal.io} workflows
             \item Implemented \textbf{Redis}-based transient storage solution, eliminating persistent record storage while maintaining full functionality
@@ -255,7 +255,7 @@
             \item Improved system performance by 30-50\% and reduced critical \textbf{database retrieval} from 90+ to 20 seconds through strategic legacy codebase optimization via \textbf{algorithm refinements} and \textbf{TypeScript} conversion
             \item Implemented \textbf{AWS Step Functions} for \textbf{workflow orchestration}, creating transparent data visualization while maintaining \textbf{HIPAA compliance} for medical documents
             \item Eliminated deployment outages and increased release frequency by leading 4-person Sign team transition from bi-monthly deployments to \textbf{zero-downtime} releases using \textbf{feature flags}
-            \item Rescued million-dollar client relationship by debugging complex \textbf{SOAP API} integration with \textbf{Epic healthcare system}
+            \item Rescued million-dollar client relationship by debugging complex \textbf{SOAP API} integration with partner.
         \end{highlights}
     \end{onecolentry}
 
