@@ -24,7 +24,6 @@
 \usepackage{enumitem}
 \usepackage{changepage}
 \usepackage{needspace}
-\usepackage{totpages}
 \usepackage{ifthen}
 \usepackage{etoolbox}
 
@@ -33,16 +32,13 @@
 \definecolor{primaryColor}{RGB}{0, 79, 144}
 \definecolor{secondaryColor}{RGB}{128, 128, 128}
 
-% Date formatting
-\usepackage{datetime}
-
 % PDF and accessibility
 \usepackage[
     pdftitle={Derek Provance Resume},
     pdfauthor={Derek Provance},
     pdfcreator={LaTeX},
     pdfsubject={Resume},
-    pdfkeywords={Software Engineer, Software Architect, AWS, Full Stack Developer},
+    pdfkeywords={Software Engineer, Software Architect, AWS, Full Stack Developer, Cloud Architecture, TypeScript, Node.js, JavaScript, Serverless, Lambda, DynamoDB, SQL, MySQL, PostgreSQL, Aurora, CI/CD, DevOps, Docker, API Design, Microservices, Technical Leadership, Agile, HIPAA Compliance, Redis, Temporal.io, Nest.JS, GitHub Actions, Terraform},
     pdfdisplaydoctitle=true,
     pdfusetitle=true,
     unicode=true,
@@ -52,7 +48,6 @@
     pdfpagemode=UseOutlines
 ]{hyperref}
 \usepackage{bookmark}
-\usepackage[pscoord]{eso-pic}
 
 % Ensure PDF is machine readable
 \input{glyphtounicode}
@@ -73,15 +68,6 @@
 \setlength{\parindent}{0pt}
 \setlength{\topskip}{0pt}
 \AtBeginEnvironment{adjustwidth}{\partopsep0pt}
-
-% Custom footer
-\makeatletter
-\let\ps@customFooterStyle\ps@plain
-\patchcmd{\ps@customFooterStyle}{\thepage}{
-    \color{secondaryColor}\textit{Derek Provance - Resume - Page \thepage\ of \ref*{TotPages}}
-}{}{} 
-\makeatother
-\pagestyle{customFooterStyle}
 
 % Section formatting
 \titleformat{\section}
@@ -124,31 +110,22 @@
 \newcommand{\jobentry}[4]{
     \begin{onecolentry}
         \noindent
-        \begin{tabularx}{\textwidth}{@{}X>{\raggedleft\arraybackslash}p{3.5cm}@{\hspace{0.2cm}}}
-            \begin{tabular}[t]{@{}l@{}}
-                \textbf{#1}\\
-                \textit{#2}
-            \end{tabular} &
-            \begin{tabular}[t]{@{}r@{}}
-                #4\\
-                \textit{#3}
-            \end{tabular}
+        \begin{tabularx}{\textwidth}{@{}X r@{}}
+            \textbf{#1} & #4\\
+            \textit{#2} & \textit{#3}
         \end{tabularx}
+        \vspace{0.05cm}
     \end{onecolentry}
 }
 
 \newcommand{\roleentry}[3]{
     \begin{onecolentry}
         \noindent
-        \begin{tabularx}{\textwidth}{@{}X>{\raggedleft\arraybackslash}p{3.5cm}@{\hspace{0.2cm}}}
-            \begin{tabular}[t]{@{}l@{}}
-                \textbf{#1}
-            \end{tabular} &
-            \begin{tabular}[t]{@{}r@{}}
-                #3\\
-                \textit{#2}
-            \end{tabular}
+        \begin{tabularx}{\textwidth}{@{}X r@{}}
+            \textbf{#1} & #3\\
+            & \textit{#2}
         \end{tabularx}
+        \vspace{0.05cm}
     \end{onecolentry}
 }
 
@@ -160,36 +137,21 @@
     \end{onecolentry}
 }
 
-% Utility commands
-\newcommand{\placelastupdatedtext}{
-  \AddToShipoutPicture*{
-    \put(
-        \LenToUnit{\paperwidth-2 cm-0.2 cm-1cm},
-        \LenToUnit{\paperheight-1.0 cm}
-    ){\vtop{{\null}\makebox[0pt][c]{
-        \small\color{secondaryColor}\textit{Last updated: \monthname\ \the\year}
-    }}}
-  }
-}
-
-\newcommand{\contactSeparator}{\hspace{0.5em}$\bullet$\hspace{0.5em}}
-
 % Improved link accessibility
 \let\hrefWithoutArrow\href
 
 % ============ DOCUMENT CONTENT ============
 \begin{document}
 
-\placelastupdatedtext
 \begin{header}
     % Name with clear semantic value
     {\fontsize{24pt}{28pt}\selectfont\textbf{Derek Provance}}
     \vspace{0.2cm}
 
-    % Contact info (split into two lines for clarity)
+    % Contact information (ATS-friendly format)
     \normalsize
-    Denver, CO | 913.228.2196 | \hrefWithoutArrow{mailto:me@derek.pro}{me@derek.pro} \\
-    \hrefWithoutArrow{https://derek.pro}{derek.pro} | \hrefWithoutArrow{https://linkedin.com/in/derekprovance}{linkedin.com/in/derekprovance} | \hrefWithoutArrow{https://github.com/derekprovance}{github.com/derekprovance}
+    913.228.2196 | \hrefWithoutArrow{mailto:me@derek.pro}{me@derek.pro} | Denver, CO \\
+    \hrefWithoutArrow{https://linkedin.com/in/derekprovance}{LinkedIn} | \hrefWithoutArrow{https://github.com/derekprovance}{GitHub} | \hrefWithoutArrow{https://derek.pro}{derek.pro}
 \end{header}
 
 \vspace{0.2cm}
