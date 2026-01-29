@@ -32,33 +32,32 @@
 \definecolor{primaryColor}{RGB}{0, 79, 144}
 \definecolor{secondaryColor}{RGB}{128, 128, 128}
 
-% PDF and accessibility
-\usepackage[
-    pdftitle={Derek Provance Resume},
-    pdfauthor={Derek Provance},
-    pdfcreator={LaTeX},
-    pdfsubject={Resume},
-    pdfkeywords={Software Engineer, Software Architect, AWS, Full Stack Developer, Cloud Architecture, TypeScript, Node.js, JavaScript, Serverless, Lambda, DynamoDB, SQL, MySQL, PostgreSQL, Aurora, CI/CD, DevOps, Docker, API Design, Microservices, Technical Leadership, Agile, HIPAA Compliance, Redis, Temporal.io, Nest.JS, GitHub Actions, Terraform},
-    pdfdisplaydoctitle=true,
-    pdfusetitle=true,
-    unicode=true,
-    breaklinks=true,
-    colorlinks=true,
-    urlcolor=primaryColor,
-    pdfpagemode=UseOutlines
-]{hyperref}
+% PDF/A-1b compliance with enhanced metadata
+\usepackage[a-1b]{pdfx}
 \usepackage{bookmark}
 
 % Ensure PDF is machine readable
 \input{glyphtounicode}
 \pdfgentounicode=1
 
-% PDF accessibility settings
+% Enhanced PDF metadata and display settings
 \hypersetup{
+    pdftitle={Derek Provance - Software Architect Resume},
+    pdfauthor={Derek Provance},
+    pdfsubject={Resume - Software Architect with 11+ years experience in cloud-native architectures and enterprise-scale systems},
+    pdfkeywords={Software Architect, Software Engineer, AWS, Cloud Architecture, TypeScript, Node.js, JavaScript, Serverless, Lambda, DynamoDB, SQL, PostgreSQL, Aurora, CI/CD, DevOps, Docker, API Design, Microservices, Technical Leadership, HIPAA Compliance, Redis, Temporal.io, Nest.JS, GitHub Actions, Terraform, Enterprise Systems, SaaS, Full Stack Developer, Agile},
+    pdfdisplaydoctitle=true,
+    pdfusetitle=true,
+    unicode=true,
+    breaklinks=true,
+    colorlinks=true,
+    urlcolor=primaryColor,
+    pdfpagemode=UseOutlines,
+    pdfstartview=FitH,
     pdfborderstyle={/S/U/W 1},
     pdftoolbar=true,
     pdfmenubar=true,
-    bookmarksopen=true
+    bookmarksopen=true,
 }
 
 % ============ DOCUMENT STYLING ============
